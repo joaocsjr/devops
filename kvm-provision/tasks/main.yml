@@ -1,0 +1,9 @@
+---
+# tasks file for kvm-provision
+
+
+- include: centos-install.yaml
+  when: template_so == 'centos'
+
+- include: ubuntu-install.yaml
+  when: template_so == 'ubuntu'

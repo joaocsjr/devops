@@ -1,0 +1,5 @@
+- hosts: kvm
+  become: yes  
+  
+  roles:
+  - { role: kvm-provision, tags: ["kvm-provision"] }

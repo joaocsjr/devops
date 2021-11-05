@@ -1,0 +1,33 @@
+- hosts: all
+  become: yes 
+  user: devops
+  roles:
+  - { role: install-k8s, tags: ["Install_k8s_role"] }
+
+- hosts: k8s-master
+  become: yes 
+  user: devops
+  roles:
+  - { role: create-cluster, tags: ["create_cluster_role"] }
+
+- hosts: k8s-workers
+  become: yes
+  user: devops
+  roles:
+  - { role: join-workers, tags: ["join_workers_role"] }
+
+# Check cluster 
+- hosts: k8s-master
+  become: yes
+  user: devops
+  tasks:
+    - name: Check cluster status
+      shell: kubectl get nodes
+      register: nodeup
+    
+    - debug:
+        var: nodeup
+
+
+
+

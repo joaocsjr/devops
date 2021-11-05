@@ -1,0 +1,55 @@
+   
+- name: get VM disks -- CentOS
+  command: "ls {{ vm_location }}"
+  register: disks
+  changed_when: "disks.rc != 0"
+
+- name: exportando a LIBGUESTFS_BACKEND=direct  -- CentOS
+  shell: "export LIBGUESTFS_BACKEND=direct"
+
+- name:  VM Builder  -- CentOS
+  command: >
+          virt-builder -v  --format qcow2 centos-8.2 
+          -o {{ vm_location }}{{ item.key }}.{{ file_type }}
+          --size 30G
+          --hostname {{ item.key }}   
+          --root-password password:{{ root_pass }} --selinux-relabel
+          --run /home/jcastro/devops/kvm-provision/defaults/centos-post.sh
+          --ssh-inject devops:file:/home/jcastro/.ssh/id_rsa.pub
+          --firstboot-command 'dhclient -v'
+  when: item.key not in disks.stdout
+  with_dict: "{{ guests }}"
+    
+- name: get list of VMs  -- CentOS
+  virt:
+    command: "list_vms"
+  register: vms
+
+- name: VM Install  -- CentOS
+  command: >
+            virt-install -v --import --name {{ item.key }}
+            --memory {{ item.value.mem }} --vcpus {{ item.value.cpus }}
+            --disk {{ vm_location }}/{{ item.key }}.{{ file_type }}
+            --noautoconsole --os-variant centos8 
+            --network network={{ network }}
+            --graphics vnc  
+          
+                
+  when: item.key not in vms.list_vms
+  with_dict: "{{ guests }}"
+
+- name: start vm  -- CentOS
+  virt:
+    name: "{{ item.key }}"
+    state: running
+  with_dict: "{{ guests }}"
+
+    
+
+
+    
+
+
+
+
+        

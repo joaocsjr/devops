@@ -1,0 +1,23 @@
+[all:vars]
+ansible_user = devops
+#ansible_python_interpreter=/usr/bin/python3
+
+
+
+[all]
+
+[manager]
+#stella ansible_ssh_host=192.168.122.1
+[k8s-master]
+c2-cp1 ansible_ssh_host=10.0.0.20
+
+[k8s-workers]
+c2-wn1 ansible_ssh_host=10.0.0.70
+c2-wn2 ansible_ssh_host=10.0.0.98
+
+
+
+[k8s-workers:vars]
+K8S_MASTER_NODE_IP=10.0.0.20
+
+K8S_API_SECURE_PORT=6443

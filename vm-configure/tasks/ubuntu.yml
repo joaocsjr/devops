@@ -1,0 +1,146 @@
+
+
+- name: Ensure that these software packages are installed
+  apt:
+    pkg:
+      - htop
+      - net-tools
+      - bash-completion
+      - sudo
+      - git
+      - curl
+    state: latest
+ 
+
+- name: disable ufw
+  service: 
+    name : ufw 
+    state: stopped
+    enabled: false 
+
+
+- name: install rke docker 
+  shell:
+    curl https://releases.rancher.com/install-docker/19.03.sh |  sh
+
+
+-
+  name: Disable swap
+  command:
+    cmd: swapoff -a
+-
+  name: Comment swap entry from /etc/fstab
+  replace:
+    path: /etc/fstab
+    regexp: '^(\s*)([^#\n]+\s+)(\w+\s+)swap(\s+.*)$'
+    replace: '#\1\2\3swap\4'
+
+# Loading kernel modules for RKE
+-
+  name: Add kernel modules as permanent
+  blockinfile:
+    path: /etc/modules-load.d/rke.conf
+    block: |
+      br_netfilter
+      ip6_udp_tunnel
+      ip_set
+      ip_set_hash_ip
+      ip_set_hash_net
+      iptable_filter
+      iptable_nat
+      iptable_mangle
+      iptable_raw
+      nf_conntrack_netlink
+      nf_conntrack
+      nf_conntrack_ipv4
+      nf_defrag_ipv4
+      nf_nat
+      nf_nat_ipv4
+      nf_nat_masquerade_ipv4
+      nfnetlink
+      udp_tunnel
+      veth
+      vxlan
+      x_tables
+      xt_addrtype
+      xt_conntrack
+      xt_comment
+      xt_mark
+      xt_multiport
+      xt_nat
+      xt_recent
+      xt_set
+      xt_statistic
+      xt_tcpudp
+    create: yes
+
+# Load kernel modules
+- 
+  name: Load kernel modules
+  modprobe: 
+    name: '{{ item }}'
+    state: present
+  ignore_errors: yes
+  loop:
+    - br_netfilter
+    - ip6_udp_tunnel
+    - ip_set
+    - ip_set_hash_ip
+    - ip_set_hash_net
+    - iptable_filter
+    - iptable_nat
+    - iptable_mangle
+    - iptable_raw
+    - nf_conntrack_netlink
+    - nf_conntrack
+    - nf_conntrack_ipv4
+    - nf_defrag_ipv4
+    - nf_nat
+    - nf_nat_ipv4
+    - nf_nat_masquerade_ipv4
+    - nfnetlink
+    - udp_tunnel
+    - veth
+    - vxlan
+    - x_tables
+    - xt_addrtype
+    - xt_conntrack
+    - xt_comment
+    - xt_mark
+    - xt_multiport
+    - xt_nat
+    - xt_recent
+    - xt_set
+    - xt_statistic
+    - xt_tcpudp
+
+# Configuring sysctl 
+-
+  name: Modify sysctl entries
+  sysctl:
+    name: '{{ item }}'
+    value: '1'
+    sysctl_set: yes
+    state: present
+    reload: yes
+  loop:
+    - net.bridge.bridge-nf-call-iptables
+    - net.bridge.bridge-nf-call-ip6tables
+    - net.ipv4.ip_forward
+
+# Allowing TCP Forward in sshd config
+-
+  name: Allow TCP Forward in sshd config
+  command:
+    cmd: echo "AllowTcpForwarding yes" >> /etc/ssh/sshd_config
+
+- 
+  name: Restart sshd
+  service:
+    name: sshd
+    state: restarted
+
+-
+  name: set docker permission
+  command:
+    usermod -aG docker devops

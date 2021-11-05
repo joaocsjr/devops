@@ -1,0 +1,57 @@
+
+
+- name: Configure dns
+  shell:
+    echo "nameserver 8.8.8.8" >> /etc/resolv.conf && echo "nameserver 8.8.4.4" >> /etc/resolv.conf 
+
+
+
+- name: Enable EPEL Repository on CentOS 8
+  dnf:
+    name: epel-release
+    state: latest
+   
+  
+
+
+- name: instalando pacotes - CentOS
+  dnf:
+    name: ['yum-utils','git', 'device-mapper-persistent-data', 'lvm2', 'net-tools','htop']
+    state: present
+    update_cache: true
+
+#- name: desabilita SELinux - CentOS
+#  command: setenforce 0
+- name: desabilita SELinux on reboot - CentOS
+  selinux:
+    state: disabled
+ 
+
+  
+
+- name: Disable firewall
+  shell:
+    systemctl stop firewalld && systemctl disable firewalld
+  
+- name: Disable firewall
+  shell:
+    systemctl stop firewalld && systemctl disable firewalld
+  
+##- name: Install docker
+#  shell: curl https://get.docker.com | sh
+
+#- name: Modify privilege
+#  become: true
+#  shell: systemctl start podman && systemctl status podman
+#
+#- name: Change privilege of docker
+#  become: true
+#  file: dest=/usr/bin/docker mode=+x
+#
+#- name: python docker / docker-compose module
+#  pip:
+#    name:
+#        - docker
+#        - docker-compose
+#
+

@@ -1,0 +1,6 @@
+- hosts: deploy
+  become: yes 
+  user: root
+  
+  roles:
+  - { role: vm-configure, tags: ["vm-configure"] }
