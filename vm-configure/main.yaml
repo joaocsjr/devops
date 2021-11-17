@@ -1,4 +1,4 @@
-- hosts: deploy
+- hosts: all
   become: yes 
   user: root
   

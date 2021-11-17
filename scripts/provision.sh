@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ansible-playbook ./main.yaml -i libvirt-inventory.py 
+ansible-playbook kvm-provision/main.yaml -i kvm-provision/inventory 
 
 #echo "limpando arquivos de inventario"
 
@@ -12,9 +12,9 @@ ansible-playbook ./main.yaml -i libvirt-inventory.py
 
 
 #bash kvm/ip.sh
-ansible-playbook ../vm-configure/main.yaml -i scripts/libvirt-inventory.py 
+ansible-playbook vm-configure/main.yaml -i scripts/libvirt-inventory.py   
 
-ansible-playbook ../install-k8s/main.yml -i scripts/libvirt-inventory.py  
+ansible-playbook ../install-k8s/main.yml -i  scripts/libvirt-inventory.py   
 
 
 

@@ -1,11 +1,12 @@
 #!/bin/bash
 
 msg=" Eh preciso informar 2 paremetros: <macaddress> <ipadress>"
+network="default"
 
 [[ $# -ne 2 ]] && echo $msg && exit 1
 
 
-sudo virsh net-update dados  add-last  ip-dhcp-host '<host mac="'$1'" ip="'$2'"/>' --live --config --parent-index 0
+sudo virsh net-update $network  add-last  ip-dhcp-host '<host mac="'$1'" ip="'$2'"/>' --live --config --parent-index 0
 
 
 
@@ -13,7 +14,7 @@ sudo virsh net-update dados  add-last  ip-dhcp-host '<host mac="'$1'" ip="'$2'"/
 if [ $? -eq 0 ]
 then
   echo "host add com sucesso"
-   sudo virsh net-dumpxml  dados | grep host\ mac
+   sudo virsh net-dumpxml  $network | grep host\ mac
 else
   echo "Houve uma falha ao add o host"
 fi

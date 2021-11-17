@@ -3,7 +3,7 @@
 
 
 
-- include: set-hosts.yml
+#- include: set-hosts.yml
 
 
 - include: redhat.yml

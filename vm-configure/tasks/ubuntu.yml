@@ -9,6 +9,7 @@
       - sudo
       - git
       - curl
+      - qemu-guest-agent 
     state: latest
  
 

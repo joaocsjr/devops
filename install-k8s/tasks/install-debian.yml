@@ -1,9 +1,9 @@
-- name: Ensure old versions of Docker are not installed.
-  apt:
-    name:
-      - docker
-      - docker-engine
-    state: absent
+#- name: Ensure old versions of Docker are not installed.
+#  apt:
+#    name:
+#      - docker
+#      - docker-engine
+#    state: absent
 
 - name: Ensure dependencies are installed.
   apt:
@@ -23,10 +23,10 @@
     regexp: '^([^#].*?\swap\s+sw\s+.*)$'
     replace: '# \1' 
 
-- name: add modulo overlay para o containerd
-  modprobe:
-    name: overlay
-    state: present
+#- name: add modulo overlay para o containerd
+#  modprobe:
+#    name: overlay
+#    state: present
 
 - name: add modulo br_netfilter
   modprobe:
@@ -58,39 +58,39 @@
   shell:
     sysctl --system
 
-- name: instalando containerd 
-  apt:
-    name: containerd
-    state: present
-    update_cache: yes
-
-
-- name: Ensure containerd is started and enabled at boot.
-  service:
-    name: containerd
-    state: "{{ containerd_service_state }}"
-    enabled: "{{ containerd_service_enabled }}"
-
-- name: Ensure containerd config directory exists.
-  file:
-    path: /etc/containerd
-    state: directory
-  register: containerd_dir
-
-- name: Get defaults from containerd.
-  command: containerd config default
-  changed_when: false
-  register: containerd_config_default
-  when: containerd_config_default_write
-
-- name: Write defaults to config.toml.
-  copy:
-    dest: /etc/containerd/config.toml
-    content: "{{ containerd_config_default.stdout }}"
-  notify: restart containerd
-  when: containerd_config_default_write
-
-
+#- name: instalando containerd 
+#  apt:
+#    name: containerd
+#    state: present
+#    update_cache: yes
+#
+#
+#- name: Ensure containerd is started and enabled at boot.
+#  service:
+#    name: containerd
+#    state: "{{ containerd_service_state }}"
+#    enabled: "{{ containerd_service_enabled }}"
+#
+#- name: Ensure containerd config directory exists.
+#  file:
+#    path: /etc/containerd
+#    state: directory
+#  register: containerd_dir
+#
+#- name: Get defaults from containerd.
+#  command: containerd config default
+#  changed_when: false
+#  register: containerd_config_default
+#  when: containerd_config_default_write
+#
+#- name: Write defaults to config.toml.
+#  copy:
+#    dest: /etc/containerd/config.toml
+#    content: "{{ containerd_config_default.stdout }}"
+#  notify: restart containerd
+#  when: containerd_config_default_write
+#
+#
 - name: disable ufw
   systemd:
    name: ufw

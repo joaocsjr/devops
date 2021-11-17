@@ -1,0 +1,198 @@
+2021-11-16 17:31:34,932 p=84801 u=jcastro n=ansible | ERROR! the playbook: ./main.yaml could not be found
+2021-11-16 17:31:53,904 p=84868 u=jcastro n=ansible | [WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+2021-11-16 17:31:53,911 p=84868 u=jcastro n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2021-11-16 17:31:54,089 p=84868 u=jcastro n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: kvm
+
+2021-11-16 17:31:54,090 p=84868 u=jcastro n=ansible | PLAY [kvm] *********************************************************************************************************************************************************************************************************************************************
+2021-11-16 17:31:54,090 p=84868 u=jcastro n=ansible | skipping: no hosts matched
+2021-11-16 17:31:54,090 p=84868 u=jcastro n=ansible | PLAY RECAP *********************************************************************************************************************************************************************************************************************************************
+2021-11-16 17:31:54,090 p=84868 u=jcastro n=ansible | Tuesday 16 November 2021  17:31:54 -0300 (0:00:00.002)       0:00:00.002 ****** 
+2021-11-16 17:31:54,090 p=84868 u=jcastro n=ansible | =============================================================================== 
+2021-11-16 17:33:07,357 p=85084 u=jcastro n=ansible | [WARNING]:  * Failed to parse /home/jcastro/devops/scripts/inventory with script plugin: problem running /home/jcastro/devops/scripts/inventory --list ([Errno 8] Exec format error: '/home/jcastro/devops/scripts/inventory')
+
+2021-11-16 17:33:07,358 p=85084 u=jcastro n=ansible | [WARNING]:  * Failed to parse /home/jcastro/devops/scripts/inventory with yaml plugin: We were unable to read either as JSON nor YAML, these are the errors we got from each: JSON: Expecting value: line 1 column 2 (char 1)  Syntax Error while
+loading YAML.   did not find expected <document start>  The error appears to be in '/home/jcastro/devops/scripts/inventory': line 2, column 1, but may be elsewhere in the file depending on the exact syntax problem.  The offending line appears to
+be:  [kvm] localhost ansible_connection=local ansible_user = jcastro ^ here
+
+2021-11-16 17:33:07,358 p=85084 u=jcastro n=ansible | [WARNING]:  * Failed to parse /home/jcastro/devops/scripts/inventory with ini plugin: /home/jcastro/devops/scripts/inventory:2: Expected key=value host variable assignment, got: ansible_user
+
+2021-11-16 17:33:07,359 p=85084 u=jcastro n=ansible | [WARNING]: Unable to parse /home/jcastro/devops/scripts/inventory as an inventory source
+
+2021-11-16 17:33:07,359 p=85084 u=jcastro n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2021-11-16 17:33:07,365 p=85084 u=jcastro n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2021-11-16 17:33:07,544 p=85084 u=jcastro n=ansible | PLAY [kvm] *********************************************************************************************************************************************************************************************************************************************
+2021-11-16 17:33:07,544 p=85084 u=jcastro n=ansible | skipping: no hosts matched
+2021-11-16 17:33:07,544 p=85084 u=jcastro n=ansible | PLAY RECAP *********************************************************************************************************************************************************************************************************************************************
+2021-11-16 17:33:07,545 p=85084 u=jcastro n=ansible | Tuesday 16 November 2021  17:33:07 -0300 (0:00:00.002)       0:00:00.002 ****** 
+2021-11-16 17:33:07,545 p=85084 u=jcastro n=ansible | =============================================================================== 
+2021-11-16 17:35:33,844 p=85411 u=jcastro n=ansible | ERROR! the role 'kvm-provision' was not found in /home/jcastro/devops/kvm-provision/roles:/home/jcastro/devops/scripts/roles:/home/jcastro/devops/kvm-provision
+
+The error appears to be in '/home/jcastro/devops/kvm-provision/main.yaml': line 5, column 5, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  roles:
+  - { role: kvm-provision, tags: ["kvm-provision"] }
+    ^ here
+
+2021-11-16 17:36:03,162 p=85479 u=jcastro n=ansible | PLAY [kvm] *********************************************************************************************************************************************************************************************************************************************
+2021-11-16 17:36:03,177 p=85479 u=jcastro n=ansible | TASK [Gathering Facts] *********************************************************************************************************************************************************************************************************************************
+2021-11-16 17:36:03,177 p=85479 u=jcastro n=ansible | Tuesday 16 November 2021  17:36:03 -0300 (0:00:00.016)       0:00:00.016 ****** 
+2021-11-16 17:36:04,678 p=85479 u=jcastro n=ansible | [WARNING]: Platform linux on host localhost is using the discovered Python interpreter at /usr/bin/python3, but future installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible/2.10/reference_appendices/interpreter_discovery.html for more information.
+
+2021-11-16 17:36:04,679 p=85479 u=jcastro n=ansible | ok: [localhost]
+2021-11-16 17:36:04,696 p=85479 u=jcastro n=ansible | TASK [kvm-provision : get VM disks -- CentOS] **********************************************************************************************************************************************************************************************************
+2021-11-16 17:36:04,696 p=85479 u=jcastro n=ansible | Tuesday 16 November 2021  17:36:04 -0300 (0:00:01.518)       0:00:01.535 ****** 
+2021-11-16 17:36:04,727 p=85479 u=jcastro n=ansible | skipping: [localhost]
+2021-11-16 17:36:04,740 p=85479 u=jcastro n=ansible | TASK [kvm-provision : exportando a LIBGUESTFS_BACKEND=direct  -- CentOS] *******************************************************************************************************************************************************************************
+2021-11-16 17:36:04,740 p=85479 u=jcastro n=ansible | Tuesday 16 November 2021  17:36:04 -0300 (0:00:00.044)       0:00:01.579 ****** 
+2021-11-16 17:36:04,771 p=85479 u=jcastro n=ansible | skipping: [localhost]
+2021-11-16 17:36:04,779 p=85479 u=jcastro n=ansible | TASK [kvm-provision : VM Builder  -- CentOS] ***********************************************************************************************************************************************************************************************************
+2021-11-16 17:36:04,779 p=85479 u=jcastro n=ansible | Tuesday 16 November 2021  17:36:04 -0300 (0:00:00.039)       0:00:01.618 ****** 
+2021-11-16 17:36:04,818 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-master', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:04,824 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker1', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:04,831 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker2', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:04,840 p=85479 u=jcastro n=ansible | TASK [kvm-provision : get list of VMs  -- CentOS] ******************************************************************************************************************************************************************************************************
+2021-11-16 17:36:04,841 p=85479 u=jcastro n=ansible | Tuesday 16 November 2021  17:36:04 -0300 (0:00:00.061)       0:00:01.680 ****** 
+2021-11-16 17:36:04,873 p=85479 u=jcastro n=ansible | skipping: [localhost]
+2021-11-16 17:36:04,884 p=85479 u=jcastro n=ansible | TASK [kvm-provision : VM Install  -- CentOS] ***********************************************************************************************************************************************************************************************************
+2021-11-16 17:36:04,884 p=85479 u=jcastro n=ansible | Tuesday 16 November 2021  17:36:04 -0300 (0:00:00.043)       0:00:01.723 ****** 
+2021-11-16 17:36:04,965 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-master', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:04,966 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker1', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:04,966 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker2', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:04,976 p=85479 u=jcastro n=ansible | TASK [kvm-provision : start vm  -- CentOS] *************************************************************************************************************************************************************************************************************
+2021-11-16 17:36:04,976 p=85479 u=jcastro n=ansible | Tuesday 16 November 2021  17:36:04 -0300 (0:00:00.092)       0:00:01.815 ****** 
+2021-11-16 17:36:05,028 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-master', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:05,035 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker1', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:05,041 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker2', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:05,050 p=85479 u=jcastro n=ansible | TASK [kvm-provision : get VM disks -- Ubuntu] **********************************************************************************************************************************************************************************************************
+2021-11-16 17:36:05,051 p=85479 u=jcastro n=ansible | Tuesday 16 November 2021  17:36:05 -0300 (0:00:00.074)       0:00:01.890 ****** 
+2021-11-16 17:36:05,458 p=85479 u=jcastro n=ansible | ok: [localhost]
+2021-11-16 17:36:05,469 p=85479 u=jcastro n=ansible | TASK [kvm-provision : exportando a LIBGUESTFS_BACKEND=direct] ******************************************************************************************************************************************************************************************
+2021-11-16 17:36:05,469 p=85479 u=jcastro n=ansible | Tuesday 16 November 2021  17:36:05 -0300 (0:00:00.418)       0:00:02.308 ****** 
+2021-11-16 17:36:05,722 p=85479 u=jcastro n=ansible | changed: [localhost]
+2021-11-16 17:36:05,732 p=85479 u=jcastro n=ansible | TASK [kvm-provision : VM Builder -- Ubuntu] ************************************************************************************************************************************************************************************************************
+2021-11-16 17:36:05,732 p=85479 u=jcastro n=ansible | Tuesday 16 November 2021  17:36:05 -0300 (0:00:00.262)       0:00:02.571 ****** 
+2021-11-16 17:36:05,773 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-master', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:05,782 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker1', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:05,790 p=85479 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker2', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:36:05,809 p=85479 u=jcastro n=ansible | TASK [kvm-provision : get list of VMs  -- Ubuntu] ******************************************************************************************************************************************************************************************************
+2021-11-16 17:36:05,810 p=85479 u=jcastro n=ansible | Tuesday 16 November 2021  17:36:05 -0300 (0:00:00.077)       0:00:02.649 ****** 
+2021-11-16 17:36:06,109 p=85479 u=jcastro n=ansible |  [ERROR]: User interrupted execution
+
+2021-11-16 17:37:03,141 p=85779 u=jcastro n=ansible | PLAY [kvm] *********************************************************************************************************************************************************************************************************************************************
+2021-11-16 17:37:03,156 p=85779 u=jcastro n=ansible | TASK [Gathering Facts] *********************************************************************************************************************************************************************************************************************************
+2021-11-16 17:37:03,156 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:03 -0300 (0:00:00.016)       0:00:00.016 ****** 
+2021-11-16 17:37:04,683 p=85779 u=jcastro n=ansible | [WARNING]: Platform linux on host localhost is using the discovered Python interpreter at /usr/bin/python3, but future installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible/2.10/reference_appendices/interpreter_discovery.html for more information.
+
+2021-11-16 17:37:04,683 p=85779 u=jcastro n=ansible | ok: [localhost]
+2021-11-16 17:37:04,704 p=85779 u=jcastro n=ansible | TASK [kvm-provision : get VM disks -- CentOS] **********************************************************************************************************************************************************************************************************
+2021-11-16 17:37:04,704 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:04 -0300 (0:00:01.547)       0:00:01.564 ****** 
+2021-11-16 17:37:04,734 p=85779 u=jcastro n=ansible | skipping: [localhost]
+2021-11-16 17:37:04,746 p=85779 u=jcastro n=ansible | TASK [kvm-provision : exportando a LIBGUESTFS_BACKEND=direct  -- CentOS] *******************************************************************************************************************************************************************************
+2021-11-16 17:37:04,747 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:04 -0300 (0:00:00.042)       0:00:01.607 ****** 
+2021-11-16 17:37:04,779 p=85779 u=jcastro n=ansible | skipping: [localhost]
+2021-11-16 17:37:04,788 p=85779 u=jcastro n=ansible | TASK [kvm-provision : VM Builder  -- CentOS] ***********************************************************************************************************************************************************************************************************
+2021-11-16 17:37:04,789 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:04 -0300 (0:00:00.041)       0:00:01.649 ****** 
+2021-11-16 17:37:04,834 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-master', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:04,863 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker1', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:04,867 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker2', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:04,877 p=85779 u=jcastro n=ansible | TASK [kvm-provision : get list of VMs  -- CentOS] ******************************************************************************************************************************************************************************************************
+2021-11-16 17:37:04,877 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:04 -0300 (0:00:00.088)       0:00:01.737 ****** 
+2021-11-16 17:37:04,940 p=85779 u=jcastro n=ansible | skipping: [localhost]
+2021-11-16 17:37:04,948 p=85779 u=jcastro n=ansible | TASK [kvm-provision : VM Install  -- CentOS] ***********************************************************************************************************************************************************************************************************
+2021-11-16 17:37:04,948 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:04 -0300 (0:00:00.071)       0:00:01.808 ****** 
+2021-11-16 17:37:04,987 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-master', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:04,993 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker1', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:04,999 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker2', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:05,007 p=85779 u=jcastro n=ansible | TASK [kvm-provision : start vm  -- CentOS] *************************************************************************************************************************************************************************************************************
+2021-11-16 17:37:05,008 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:05 -0300 (0:00:00.059)       0:00:01.868 ****** 
+2021-11-16 17:37:05,046 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-master', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:05,053 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker1', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:05,058 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker2', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:05,067 p=85779 u=jcastro n=ansible | TASK [kvm-provision : get VM disks -- Ubuntu] **********************************************************************************************************************************************************************************************************
+2021-11-16 17:37:05,067 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:05 -0300 (0:00:00.059)       0:00:01.927 ****** 
+2021-11-16 17:37:05,468 p=85779 u=jcastro n=ansible | ok: [localhost]
+2021-11-16 17:37:05,476 p=85779 u=jcastro n=ansible | TASK [kvm-provision : exportando a LIBGUESTFS_BACKEND=direct] ******************************************************************************************************************************************************************************************
+2021-11-16 17:37:05,476 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:05 -0300 (0:00:00.409)       0:00:02.337 ****** 
+2021-11-16 17:37:05,733 p=85779 u=jcastro n=ansible | changed: [localhost]
+2021-11-16 17:37:05,741 p=85779 u=jcastro n=ansible | TASK [kvm-provision : VM Builder -- Ubuntu] ************************************************************************************************************************************************************************************************************
+2021-11-16 17:37:05,741 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:05 -0300 (0:00:00.264)       0:00:02.601 ****** 
+2021-11-16 17:37:05,782 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-master', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:05,791 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker1', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:05,799 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker2', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:05,809 p=85779 u=jcastro n=ansible | TASK [kvm-provision : get list of VMs  -- Ubuntu] ******************************************************************************************************************************************************************************************************
+2021-11-16 17:37:05,809 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:05 -0300 (0:00:00.067)       0:00:02.669 ****** 
+2021-11-16 17:37:06,228 p=85779 u=jcastro n=ansible | ok: [localhost]
+2021-11-16 17:37:06,238 p=85779 u=jcastro n=ansible | TASK [kvm-provision : VM Install  -- Ubuntu] ***********************************************************************************************************************************************************************************************************
+2021-11-16 17:37:06,238 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:06 -0300 (0:00:00.429)       0:00:03.098 ****** 
+2021-11-16 17:37:06,280 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-master', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:06,290 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker1', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:06,298 p=85779 u=jcastro n=ansible | skipping: [localhost] => (item={'key': 'k8s-worker2', 'value': {'mem': 2048, 'cpus': 2}}) 
+2021-11-16 17:37:06,316 p=85779 u=jcastro n=ansible | TASK [kvm-provision : start vm  -- Ubuntu] *************************************************************************************************************************************************************************************************************
+2021-11-16 17:37:06,316 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:06 -0300 (0:00:00.078)       0:00:03.176 ****** 
+2021-11-16 17:37:08,457 p=85779 u=jcastro n=ansible | changed: [localhost] => (item={'key': 'k8s-master', 'value': {'mem': 2048, 'cpus': 2}})
+2021-11-16 17:37:10,776 p=85779 u=jcastro n=ansible | changed: [localhost] => (item={'key': 'k8s-worker1', 'value': {'mem': 2048, 'cpus': 2}})
+2021-11-16 17:37:13,999 p=85779 u=jcastro n=ansible | changed: [localhost] => (item={'key': 'k8s-worker2', 'value': {'mem': 2048, 'cpus': 2}})
+2021-11-16 17:37:14,041 p=85779 u=jcastro n=ansible | PLAY RECAP *********************************************************************************************************************************************************************************************************************************************
+2021-11-16 17:37:14,041 p=85779 u=jcastro n=ansible | localhost                  : ok=5    changed=2    unreachable=0    failed=0    skipped=8    rescued=0    ignored=0   
+2021-11-16 17:37:14,042 p=85779 u=jcastro n=ansible | Tuesday 16 November 2021  17:37:14 -0300 (0:00:07.725)       0:00:10.902 ****** 
+2021-11-16 17:37:14,042 p=85779 u=jcastro n=ansible | =============================================================================== 
+2021-11-16 17:37:14,043 p=85779 u=jcastro n=ansible | kvm-provision : start vm  -- Ubuntu ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 7.73s
+2021-11-16 17:37:14,043 p=85779 u=jcastro n=ansible | Gathering Facts --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 1.55s
+2021-11-16 17:37:14,044 p=85779 u=jcastro n=ansible | kvm-provision : get list of VMs  -- Ubuntu ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 0.43s
+2021-11-16 17:37:14,044 p=85779 u=jcastro n=ansible | kvm-provision : get VM disks -- Ubuntu ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.41s
+2021-11-16 17:37:14,045 p=85779 u=jcastro n=ansible | kvm-provision : exportando a LIBGUESTFS_BACKEND=direct ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 0.26s
+2021-11-16 17:37:14,045 p=85779 u=jcastro n=ansible | kvm-provision : VM Builder  -- CentOS ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.09s
+2021-11-16 17:37:14,045 p=85779 u=jcastro n=ansible | kvm-provision : VM Install  -- Ubuntu ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.08s
+2021-11-16 17:37:14,046 p=85779 u=jcastro n=ansible | kvm-provision : get list of VMs  -- CentOS ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 0.07s
+2021-11-16 17:37:14,047 p=85779 u=jcastro n=ansible | kvm-provision : VM Builder -- Ubuntu ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 0.07s
+2021-11-16 17:37:14,047 p=85779 u=jcastro n=ansible | kvm-provision : VM Install  -- CentOS ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.06s
+2021-11-16 17:37:14,048 p=85779 u=jcastro n=ansible | kvm-provision : start vm  -- CentOS ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.06s
+2021-11-16 17:37:14,048 p=85779 u=jcastro n=ansible | kvm-provision : get VM disks -- CentOS ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.04s
+2021-11-16 17:37:14,048 p=85779 u=jcastro n=ansible | kvm-provision : exportando a LIBGUESTFS_BACKEND=direct  -- CentOS ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.04s
+2021-11-16 17:37:15,318 p=86271 u=jcastro n=ansible | [WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+2021-11-16 17:37:15,320 p=86271 u=jcastro n=ansible | [WARNING]: Found both group and host with same name: k8s-master
+
+2021-11-16 17:37:15,532 p=86271 u=jcastro n=ansible | ERROR! the role 'vm-configure' was not found in /home/jcastro/devops/vm-configure/roles:/home/jcastro/devops/scripts/roles:/home/jcastro/devops/vm-configure
+
+The error appears to be in '/home/jcastro/devops/vm-configure/main.yaml': line 6, column 5, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  roles:
+  - { role: vm-configure, tags: ["vm-configure"] }
+    ^ here
+
+2021-11-16 17:37:16,817 p=86285 u=jcastro n=ansible | [WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+2021-11-16 17:37:16,818 p=86285 u=jcastro n=ansible | [WARNING]: Found both group and host with same name: k8s-master
+
+2021-11-16 17:37:17,093 p=86285 u=jcastro n=ansible | ERROR! the role 'install-k8s' was not found in /home/jcastro/devops/install-k8s/roles:/home/jcastro/devops/scripts/roles:/home/jcastro/devops/install-k8s
+
+The error appears to be in '/home/jcastro/devops/install-k8s/main.yml': line 5, column 5, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  roles:
+  - { role: install-k8s, tags: ["Install_k8s_role"] }
+    ^ here
+
+2021-11-16 18:08:22,606 p=95053 u=jcastro n=ansible | ansible-playbook 2.10.5
+  config file = /home/jcastro/devops/scripts/ansible.cfg
+  configured module search path = ['/usr/share/my_modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  executable location = /usr/bin/ansible-playbook
+  python version = 3.9.5 (default, May 11 2021, 08:20:37) [GCC 10.3.0]
+2021-11-16 18:08:22,607 p=95053 u=jcastro n=ansible | Using /home/jcastro/devops/scripts/ansible.cfg as config file
+2021-11-16 18:08:22,607 p=95053 u=jcastro n=ansible | ERROR! the playbook: kvm-provision/main.yaml could not be found

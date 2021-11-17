@@ -1,11 +1,13 @@
-- name: Ensure old versions of Docker are not installed.
-  package:
-    name:
-      - docker
-      - docker-common
-      - docker-engine
-    state: absent
-
+#- name: Ensure old versions of Docker are not installed.
+#  package:
+#    name:
+#      - docker
+#      - docker-common
+#      - docker-engine
+#    state: absent
+- name: install rke docker 
+  shell:
+    curl https://releases.rancher.com/install-docker/19.03.sh |  sh
 
 
 
@@ -15,45 +17,45 @@
     name: ['yum-utils', 'device-mapper-persistent-data', 'lvm2']
     state: present
     update_cache: true
-   
-- name: criando a pasta docker no systemd
-  file:
-    path: /etc/systemd/system/docker.service.d
-    state: directory
-    mode: 0755
-
-    
-- name: add repo docker - CentOS
-  shell:
-    yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-  tags: docker
-
-- name: instalando docker - CentOS
-  yum:
-    name: docker-ce
-    state: present
-    update_cache: true  
-
-  
-- name: adicionando os parametros de confiugração do docker daemon - CentOS
-  blockinfile:
-    dest: /etc/docker/daemon.json
-    marker: ''
-    create: yes
-    block: |
-      {
-        "exec-opts": ["native.cgroupdriver=systemd"],
-        "log-driver": "json-file",
-        "log-opts": {
-          "max-size": "100m"
-        },
-        "storage-driver": "overlay2",
-        "storage-opts": [
-          "overlay2.override_kernel_check=true"
-        ]
-      }
-  tags: docker
-
+#   
+#- name: criando a pasta docker no systemd
+#  file:
+#    path: /etc/systemd/system/docker.service.d
+#    state: directory
+#    mode: 0755
+#
+#    
+#- name: add repo docker - CentOS
+#  shell:
+#    yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+#  tags: docker
+#
+#- name: instalando docker - CentOS
+#  yum:
+#    name: docker-ce
+#    state: present
+#    update_cache: true  
+#
+#  
+#- name: adicionando os parametros de confiugração do docker daemon - CentOS
+#  blockinfile:
+#    dest: /etc/docker/daemon.json
+#    marker: ''
+#    create: yes
+#    block: |
+#      {
+#        "exec-opts": ["native.cgroupdriver=systemd"],
+#        "log-driver": "json-file",
+#        "log-opts": {
+#          "max-size": "100m"
+#        },
+#        "storage-driver": "overlay2",
+#        "storage-opts": [
+#          "overlay2.override_kernel_check=true"
+#        ]
+#      }
+#  tags: docker
+#
 - name: desabilita SELinux - CentOS
   command: setenforce 0
 - name: desabilita SELinux on reboot - CentOS
@@ -71,15 +73,16 @@
     path: /etc/systemd/system/docker.service.d
     state: directory
     mode: 0755
-- name: desativando swap
-  shell:
-    swapoff -a
+- name: Disable swap
+  command:
+    cmd: swapoff -a
 
-- name: Desativando swap no fstab
+- name: Comment swap entry from /etc/fstab
   replace:
     path: /etc/fstab
-    regexp: '^([^#].*?\swap\s+sw\s+.*)$'
-    replace: '# \1' 
+    regexp: '^(\s*)([^#\n]+\s+)(\w+\s+)swap(\s+.*)$'
+    replace: '#\1\2\3swap\4'
+
 
 
 - name: start Docker
@@ -121,6 +124,9 @@
 #   enabled: yes
 #   state: started
 
+- name: set docker permission
+  command:
+    usermod -aG docker devops
 
 - name: adicionando autocompletation
   shell:
