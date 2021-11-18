@@ -16,7 +16,7 @@ vm_location: /var/lib/libvirt/images/
 #############################################
 
 #determina a imagem que sera usada [centos, ubuntu, fedora *beta]
-template_so: "ubuntu" 
+template_so: "centos" 
 
 # setup das VMs1
 guests:

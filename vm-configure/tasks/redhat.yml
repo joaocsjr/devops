@@ -37,8 +37,8 @@
   shell:
     systemctl stop firewalld && systemctl disable firewalld
   
-##- name: Install docker
-#  shell: curl https://get.docker.com | sh
+#- name: Install docker
+# shell: curl https://get.docker.com | sh
 
 #- name: Modify privilege
 #  become: true

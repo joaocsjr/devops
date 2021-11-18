@@ -38,17 +38,24 @@
   when: item.key not in vms.list_vms
   with_dict: "{{ guests }}"
 
-- name: start vm  -- Ubuntu
+- name: Register vm  -- Ubuntu
   virt:
     name: "{{ item.key }}"
     state: running
   with_dict: "{{ guests }}"
-    
-- name: Reboot -- Ubuntu
-  shell: "sleep 15 && reboot"
-    
 
 
+- name: Stop VM -- Ubuntu
+  virt:
+    name: "{{ item.key }}"
+    state: shutdown 
+  with_dict: "{{ guests }}"    
 
+
+- name: Start vm  -- Ubuntu
+  virt:
+    name: "{{ item.key }}"
+    state: running
+  with_dict: "{{ guests }}"
 
         
