@@ -4,7 +4,7 @@ msg=" Eh preciso informar 3 paremetros: <macaddress> <hostname> <ipadress>"
 network="default"
 nmac="02:01:00:00:00:"
 range="192.168.122."
-name="node"
+#name="node"
 [[ $# -ne 3 ]] && echo $msg && exit 1
 
 

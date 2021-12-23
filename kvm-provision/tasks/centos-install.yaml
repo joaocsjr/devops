@@ -19,11 +19,21 @@
           --firstboot-command 'dhclient -v'
   when: item.key not in disks.stdout
   with_dict: "{{ guests }}"
-    
+
+
+
 - name: get list of VMs  -- CentOS
   virt:
     command: "list_vms"
   register: vms
+
+- name: dhcp
+  command: >
+            virsh net-update default add-last  ip-dhcp-host {{ item.value.cpus }}
+
+
+
+
 
 - name: VM Install  -- CentOS
   command: >
@@ -31,9 +41,9 @@
             --memory {{ item.value.mem }} --vcpus {{ item.value.cpus }}
             --disk {{ vm_location }}/{{ item.key }}.{{ file_type }}
             --noautoconsole --os-variant centos8 
-            --network network={{ network }}
+            --network network={{ network }},mac=02:01:00:00:00:{{ item.value.mac }}
             --graphics vnc  
-          
+
                 
   when: item.key not in vms.list_vms
   with_dict: "{{ guests }}"
