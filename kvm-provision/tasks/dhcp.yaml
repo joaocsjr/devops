@@ -1,0 +1,7 @@
+   
+- name: Configurando reserva dhcp - libvirt
+  command: "virsh net-update default add-last  ip-dhcp-host '<host mac="'192.168.122.{{ item.value.mac }}'" name="'$name$2'" ip="'$range$3'"/> '--live --config --parent-index 0 "
+
+
+
+

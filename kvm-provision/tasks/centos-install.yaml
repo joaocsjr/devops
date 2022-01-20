@@ -27,9 +27,6 @@
     command: "list_vms"
   register: vms
 
-- name: dhcp
-  command: >
-            virsh net-update default add-last  ip-dhcp-host {{ item.value.cpus }}
 
 
 

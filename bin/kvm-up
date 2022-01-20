@@ -1,0 +1,7 @@
+#!/bin/bash
+
+value=$(<~/devops/scripts/kvm-inventory.txt)
+echo $value
+for vm in $value; do
+virsh start $vm
+done

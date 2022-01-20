@@ -1,9 +1,10 @@
 ---
 # tasks file for kvm-provision
-
+#- include: dhcp.yaml
 
 - include: centos-install.yaml
   when: template_so == 'centos'
-
+#
 - include: ubuntu-install.yaml
   when: template_so == 'ubuntu'
+#- include: inventory.yaml
