@@ -12,5 +12,6 @@
   when: template_so == 'ubuntu'
 #- include: inventory.yaml
 
-- include: utils.yaml
-  when: utils == 'yes'
+#- include: utils.yaml
+#  when: utils == 'yes'
+#
