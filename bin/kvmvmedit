@@ -1,0 +1,3 @@
+#!/bin/bash
+
+vim /home/jcastro/devops/kvm-provision/vars/main.yml

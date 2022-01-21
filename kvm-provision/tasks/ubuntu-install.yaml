@@ -7,6 +7,10 @@
 - name: exportando a LIBGUESTFS_BACKEND=direct
   shell: "export LIBGUESTFS_BACKEND=direct"
 
+
+
+
+
 - name: VM Builder -- Ubuntu
   command: >
           virt-builder -v -x --format qcow2 ubuntu-18.04
@@ -16,7 +20,7 @@
           --root-password password:{{ root_pass }} 
           --run /home/jcastro/devops/kvm-provision/defaults/ubuntu-post.sh
           --ssh-inject devops:file:/home/jcastro/.ssh/id_rsa.pub
-          --firstboot-command 'dhclient -v && apt remove openssh-server -y && apt install openssh-server -y'
+          --firstboot-command 'dhclient -v && apt install openssh-server -y'
   when: item.key not in disks.stdout
   with_dict: "{{ guests }}"
     
@@ -31,11 +35,11 @@
             --memory {{ item.value.mem }} --vcpus {{ item.value.cpus }}
             --disk {{ vm_location }}/{{ item.key }}.{{ file_type }}
             --noautoconsole --os-variant ubuntu18.04
-            --network network={{ network }}
+            --network network={{ network }},mac=02:01:00:00:00:{{ item.value.mac }}
             --graphics vnc  
           
                 
-  when: item.key not in vms.list_vms
+  when: item.key not in vms.list_vms and dhcp_reservation == 'yes'
   with_dict: "{{ guests }}"
 
 - name: Register vm  -- Ubuntu
@@ -44,18 +48,27 @@
     state: running
   with_dict: "{{ guests }}"
 
+#- name: Stop VM -- Ubuntu
+#  virt:
+#    name: "{{ item.key }}"
+#    state: shutdown 
+#  with_dict: "{{ guests }}"    
+#
+#
+#- name: Start vm  -- Ubuntu
+#  virt:
+#    name: "{{ item.key }}"
+#    state: running
+#  with_dict: "{{ guests }}"
 
-- name: Stop VM -- Ubuntu
+
+
+
+- name: destroy vm  -- Ubuntu
   virt:
     name: "{{ item.key }}"
-    state: shutdown 
-  with_dict: "{{ guests }}"    
-
-
-- name: Start vm  -- Ubuntu
-  virt:
-    name: "{{ item.key }}"
-    state: running
+    command: destroy
   with_dict: "{{ guests }}"
+  tags:
+    -  destroy
 
-        

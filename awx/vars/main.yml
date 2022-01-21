@@ -1,3 +1,0 @@
----
-# vars file for awx
-git_repo: https://github.com/ansible/awx.git

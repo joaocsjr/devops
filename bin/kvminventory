@@ -1,0 +1,2 @@
+#!/bin/bash
+ /home/jcastro/devops/bin/./libvirt-inventory.py -l

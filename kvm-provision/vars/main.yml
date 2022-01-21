@@ -17,13 +17,20 @@ vm_location: /var/lib/libvirt/images/
 
 #determina a imagem que sera usada [centos, ubuntu, fedora *beta]
 template_so: "centos"
-
+dhcp_reservation: "yes"
 #gera arquivo de de inventario para o kvm-up
-project: "teste-env"
 
 # setup das VMs1
 guests:
-  dhcp-mac:
+  k8s-master:
     mem: 2048
     cpus: 2
-    mac: 7
+    mac: 60
+  k8s-worker1:
+    mem: 2048
+    cpus: 2
+    mac: 61
+  k8s-worker2:
+    mem: 2048
+    cpus: 2
+    mac: 62   

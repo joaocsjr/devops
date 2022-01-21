@@ -97,3 +97,7 @@
    name: kubelet
    enabled: yes
    state: started
+
+- name: be sure firewalld is stopped
+  systemd: name=firewalld state=stopped
+  ignore_errors: yes

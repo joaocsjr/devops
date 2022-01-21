@@ -1,14 +1,14 @@
 #!/bin/bash
 
-msg=" Eh preciso informar 3 paremetros: <macaddress> <hostname> <ipadress>"
+msg=" Eh preciso informar 2 paremetros: <ip> <hostname> "
 network="default"
 nmac="02:01:00:00:00:"
 range="192.168.122."
 #name="node"
-[[ $# -ne 3 ]] && echo $msg && exit 1
+[[ $# -ne 2 ]] && echo $msg && exit 1
 
 
-sudo virsh net-update $network  add-last  ip-dhcp-host '<host mac="'$nmac$1'" name="'$2'" ip="'$range$3'"/>' --live --config --parent-index 0
+sudo virsh net-update $network  add-last  ip-dhcp-host '<host mac="'$nmac$1'" name="'$2'" ip="'$range$1'"/>' --live --config --parent-index 0
 
 
 

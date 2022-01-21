@@ -1,10 +1,20 @@
 #!/bin/bash
-sudo virsh net-update dados delete  ip-dhcp-host '<host mac="'$1'" ip="'$2'"/>' --live --config --parent-index 0
+
+msg=" Eh preciso informar 2 paremetros: <macaddress> <hostname> "
+network="default"
+nmac="02:01:00:00:00:"
+range="192.168.122."
+[[ $# -ne 2 ]] && echo $msg && exit 1
+sudo virsh net-update default delete  ip-dhcp-host '<host mac="'$nmac$1'" ip="'$range$1'"/>' --live --config --parent-index 0
+sudo rm -rf  /var/lib/libvirt/dnsmasq/virbr0.*
+
 #add-host #2>erros_conversao.txt
 if [ $? -eq 0 ]
 then
   echo "host removido com sucesso"
-  sudo virsh net-dumpxml  dados | grep host\ mac
+  sudo virsh net-dumpxml  default | grep host\ mac
+  kvmdhcpclean
+  kvmdhcplist
 else
   echo "Houve uma falha ao remover o host"
 fi

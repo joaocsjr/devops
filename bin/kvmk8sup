@@ -1,0 +1,8 @@
+#!/bin/bash
+
+ansible-playbook /home/jcastro/devops/kvm-provision/main.yaml -i /home/jcastro/devops/kvm-provision/inventory $1 $2 
+
+wait 1200
+
+
+ansible-playbook install-k8s/main.yml -i bin/libvirt-inventory.py $1 $2

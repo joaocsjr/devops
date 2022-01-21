@@ -1,5 +1,0 @@
----
-# tasks file for awx
-
-- import_tasks: centos.yml
-- import_tasks: setup-awx.yml

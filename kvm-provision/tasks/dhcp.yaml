@@ -1,7 +1,31 @@
-   
-- name: Configurando reserva dhcp - libvirt
-  command: "virsh net-update default add-last  ip-dhcp-host '<host mac="'192.168.122.{{ item.value.mac }}'" name="'$name$2'" ip="'$range$3'"/> '--live --config --parent-index 0 "
 
 
+- name: get VM info 
+  command: "ls {{ vm_location }}"
+  register: disks
+  changed_when: "disks.rc != 0"
+
+
+
+- name: DHCP Old Reservation remove
+  command: >
+         virsh net-update {{ network }} delete  ip-dhcp-host '<host mac="'02:01:00:00:00:{{ item.value.mac }}'" ip="'192.168.122.{{ item.value.mac }}'"/>' --live --config --parent-index 0
+  when: item.key not in disks.stdout
+  with_dict: "{{ guests }}"
+
+
+
+- name: DHCP clean lease
+  command: >
+         rm -rf /var/lib/libvirt/dnsmasq/virbr0.*
+  when: item.key not in disks.stdout
+  with_dict: "{{ guests }}"
+
+
+- name: DHCP Reservation
+  command: >
+         virsh net-update {{ network }} add-last  ip-dhcp-host '<host mac="'02:01:00:00:00:{{ item.value.mac }}'" name="'{{ item.key }}'" ip="'192.168.122.{{ item.value.mac }}'"/>' --live --config --parent-index 0
+  when: item.key not in disks.stdout
+  with_dict: "{{ guests }}"
 
 

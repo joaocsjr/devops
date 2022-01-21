@@ -28,10 +28,6 @@
   register: vms
 
 
-
-
-
-
 - name: VM Install  -- CentOS
   command: >
             virt-install -v --import --name {{ item.key }}
@@ -51,10 +47,34 @@
     state: running
   with_dict: "{{ guests }}"
 
-    
 
 
-    
+- name: vms reboot 
+  command: "virsh reboot {{ item.key }}"
+  with_dict: "{{ guests }}"
+        
+- name: Wait for reboot vms 
+  pause:
+    prompt: "Waiting..."
+    minutes: 3
+
+
+- name: get list of VMs  -- CentOS
+  virt:
+    command: "list_vms"
+  register: result
+
+- name: Print vms list
+  debug:
+    var: result
+    verbosity: 2
+
+
+#- name: ----  Vms IP address -----  Centos
+#  shell: virsh net-dhcp-leases --network default     
+#
+
+
 
 
 
