@@ -16,7 +16,7 @@ ansible all -m user -a "name=devops" -k
 
 
 ### copiar como root
-ansible all -m authorized_key -a "user=devops state=present key='ssh-rsa '" -k
+ansible all -m authorized_key -a "user=devops state=present key='ssh-rsa '" -k -u root
 
 ### configurando o sudoers
 ansible all -m lineinfile -a "dest=/etc/sudoers state=present line='devops ALL=(ALL) NOPASSWD: ALL'" -k 
