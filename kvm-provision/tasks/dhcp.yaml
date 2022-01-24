@@ -12,6 +12,7 @@
          virsh net-update {{ network }} delete  ip-dhcp-host '<host mac="'02:01:00:00:00:{{ item.value.mac }}'" ip="'192.168.122.{{ item.value.mac }}'"/>' --live --config --parent-index 0
   when: item.key not in disks.stdout
   with_dict: "{{ guests }}"
+  ignore_errors: yes
 
 
 
@@ -20,6 +21,8 @@
          rm -rf /var/lib/libvirt/dnsmasq/virbr0.*
   when: item.key not in disks.stdout
   with_dict: "{{ guests }}"
+  ignore_errors: yes
+
 
 
 - name: DHCP Reservation

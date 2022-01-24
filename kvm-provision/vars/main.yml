@@ -18,19 +18,36 @@ vm_location: /var/lib/libvirt/images/
 #determina a imagem que sera usada [centos, ubuntu, fedora *beta]
 template_so: "centos"
 dhcp_reservation: "yes"
+utils: "yes"
 #gera arquivo de de inventario para o kvm-up
 
 # setup das VMs1
 guests:
-  k8s-master:
+  bastion:
     mem: 2048
     cpus: 2
-    mac: 60
-  k8s-worker1:
+    mac: 70
+  ansible-ctrl:
     mem: 2048
     cpus: 2
-    mac: 61
-  k8s-worker2:
+    mac: 71
+  ansible-hub:
     mem: 2048
     cpus: 2
-    mac: 62   
+    mac: 72   
+  frontend:
+    mem: 1024
+    cpus: 2
+    mac: 80   
+  app-01:
+    mem: 1024
+    cpus: 2
+    mac: 81   
+  app-02:
+    mem: 1024
+    cpus: 2
+    mac: 82   
+  database-01:
+    mem: 1024
+    cpus: 2
+    mac: 83  

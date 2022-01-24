@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+git filter-branch --tree-filter 'rm -rf ansible.log'

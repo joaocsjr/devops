@@ -62,8 +62,8 @@
   ignore_errors: yes
 
 
-- name: desabilita SELinux - CentOS
-  command: setenforce 0
+#- name: desabilita SELinux - CentOS
+#  command: setenforce 0
 - name: desabilita SELinux on reboot - CentOS
   selinux:
     state: disabled

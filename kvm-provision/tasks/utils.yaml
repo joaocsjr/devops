@@ -1,0 +1,21 @@
+
+- name: Enable EPEL Repository on CentOS 8
+  dnf:
+    name: epel-release
+    state: latest
+   
+
+- name: add repositorio YUM Kubernetes - CentOS
+  yum_repository:
+   name: Kubernetes
+   description: Kubernetes YUM repository
+   baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+   gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+   gpgcheck: yes  
+
+
+- name: instalando pacotes - CentOS
+  dnf:
+    name: ['yum-utils','git', 'device-mapper-persistent-data', 'lvm2', 'net-tools','htop', 'kubectl']
+    state: present
+    update_cache: true
