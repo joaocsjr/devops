@@ -23,18 +23,6 @@ utils: "yes"
 
 # setup das VMs1
 guests:
-  bastion:
-    mem: 2048
-    cpus: 2
-    mac: 70
-  ansible-ctrl:
-    mem: 2048
-    cpus: 2
-    mac: 71
-  ansible-hub:
-    mem: 2048
-    cpus: 2
-    mac: 72   
   frontend:
     mem: 1024
     cpus: 2
