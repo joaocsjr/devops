@@ -1,4 +1,4 @@
-- name: Preparing Workstation
+- name: Preparing Workst	ation
   hosts: localhost
   connection: local
   tasks:
@@ -38,6 +38,8 @@
           - jq
           - libguestfs-tools 
           - virt-top
+	  - code
+          - virt-manager
 
     - block:
       - name: Verify if Oh-My-zsh is installed
@@ -58,7 +60,7 @@
         lineinfile:
           path: /home/{{ ansible_user_id }}/.zshrc
           regexp: '^ZSH_THEME='
-          line: 'ZSH_THEME="agnoster"'
+          line: 'ZSH_THEME="random"'
       - name: Creating ZSH Completion folder
         file:
           path: /home/{{ ansible_user_id }}/.oh-my-zsh/completions

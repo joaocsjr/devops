@@ -16,26 +16,15 @@ vm_location: /var/lib/libvirt/images/
 #############################################
 
 #determina a imagem que sera usada [centos, ubuntu, fedora *beta]
-template_so: "centos"
+template_so: "ubuntu"
 dhcp_reservation: "yes"
-utils: "yes"
+utils: "no"
 #gera arquivo de de inventario para o kvm-up
 
 # setup das VMs1
 guests:
-  frontend:
-    mem: 1024
+  drupal:
+    mem: 2048
     cpus: 2
     mac: 80   
-  app-01:
-    mem: 1024
-    cpus: 2
-    mac: 81   
-  app-02:
-    mem: 1024
-    cpus: 2
-    mac: 82   
-  database-01:
-    mem: 1024
-    cpus: 2
-    mac: 83  
+ 

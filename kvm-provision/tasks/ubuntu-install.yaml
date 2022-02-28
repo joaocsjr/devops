@@ -64,11 +64,11 @@
 
 
 
-- name: destroy vm  -- Ubuntu
-  virt:
-    name: "{{ item.key }}"
-    command: destroy
-  with_dict: "{{ guests }}"
-  tags:
-    -  destroy
+#- name: destroy vm  -- Ubuntu
+#  virt:
+#    name: "{{ item.key }}"
+#    command: destroy
+#  with_dict: "{{ guests }}"
+#  tags:
+#    -  destroy
 
