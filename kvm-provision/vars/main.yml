@@ -9,7 +9,7 @@ ssh-key: devops:file:~/.ssh/id_rsa.pub
 vm_location: /var/lib/libvirt/images/
 
 
-############################################
+###########################################ß#
 #
 #  CUSTOMIZACAO DO SETUP
 #
@@ -23,19 +23,15 @@ utils: "yes"
 
 # setup das VMs1
 guests:
-  frontend:
-    mem: 1024
-    cpus: 2
-    mac: 80   
-  app-01:
-    mem: 1024
+  rke1:
+    mem: 4096
     cpus: 2
     mac: 81   
-  app-02:
-    mem: 1024
+  rke2:
+    mem: 4096
     cpus: 2
     mac: 82   
-  database-01:
-    mem: 1024
+  rke3:
+    mem: 4096
     cpus: 2
-    mac: 83  
+    mac: 83   
