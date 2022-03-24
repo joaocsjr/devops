@@ -9,7 +9,7 @@
 
 - name:  VM Builder  -- CentOS
   command: >
-          virt-builder -v  --format qcow2 centos-8.2 
+          virt-builder -v  --format qcow2 alma-8.5
           -o {{ vm_location }}{{ item.key }}.{{ file_type }}
           --size 30G
           --hostname {{ item.key }}   
