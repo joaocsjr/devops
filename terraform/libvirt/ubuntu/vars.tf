@@ -19,7 +19,7 @@ variable "subnet" { default = ["192.168.100.0/24"]}
 variable "templates" {
   type = map
   default = {
-    "ubuntu" = "/opt/stage/ubuntu-20.04.qcow2"
+    "ubuntu" = "/opt/stage/focal-server-cloudimg-amd64-disk-kvm.img"
     "centos7"  = "01000000-0000-4000-8000-000050010300"
     "rocky"  = "/opt/stage/Rocky-8-GenericCloud-8.5-20211114.2.x86_64.qcow2"
   }

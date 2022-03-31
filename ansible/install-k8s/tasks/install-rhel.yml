@@ -4,6 +4,7 @@
       - docker
       - docker-common
       - docker-engine
+      
     state: absent
 #- name: install rke docker 
 #  shell:
@@ -14,7 +15,7 @@
 
 - name: instalando dependencias - CentOS
   yum:
-    name: ['yum-utils', 'device-mapper-persistent-data', 'lvm2']
+    name: ['yum-utils', 'device-mapper-persistent-data', 'lvm2','bash-completion']
     state: present
     update_cache: true
    
@@ -83,11 +84,11 @@
   command:
     cmd: swapoff -a
 
-- name: Comment swap entry from /etc/fstab
+- name: Desativando swap no fstab
   replace:
     path: /etc/fstab
-    regexp: '^(\s*)([^#\n]+\s+)(\w+\s+)swap(\s+.*)$'
-    replace: '#\1\2\3swap\4'
+    regexp: '^([^#].*?\swap\s+sw\s+.*)$'
+    replace: '# \1' 
 
 
 

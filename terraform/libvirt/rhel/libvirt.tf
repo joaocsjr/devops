@@ -1,9 +1,5 @@
 
 
-
-
-
-
 # Defining VM Volume
 resource "libvirt_volume" "os_image" {
   name = "os-image"
@@ -103,3 +99,4 @@ output "name" {
 
   value = libvirt_domain.domain.*.name
 }
+

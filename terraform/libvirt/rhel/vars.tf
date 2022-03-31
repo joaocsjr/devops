@@ -1,12 +1,12 @@
 
 variable "hostname" {
   type = list(string)
-  default = ["node-10","node-20","node-30"]
+  default = ["master","worker1","worker2","worker3"]
   description = "Hostname das vms"
 }
 
 
-variable "domain" { default = "jcastro.lab" }
+variable "domain" { default = "fsociety.in" }
 variable "memoryMB" { default = 1024*2 }
 variable "cpu" { default = 2 }
 variable "disk" { default = 107374182400 } # = 100GB

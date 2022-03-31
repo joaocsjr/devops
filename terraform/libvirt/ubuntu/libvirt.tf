@@ -2,8 +2,10 @@
 
 locals {
   vms = {
-    "ubuntu-1" = { os_code_name = "focal", network = "nat130", prefixIP = "192.168.130", octetIP = "10", vcpu=2, memoryMB=1024*2 },
-    "ubuntu-2" = { os_code_name = "focal", network = "nat131", prefixIP = "192.168.131", octetIP = "10", vcpu=2, memoryMB=1024*2 }
+    "k8s-master" = { os_code_name = "focal", network = "nat130", prefixIP = "192.168.130", octetIP = "10", vcpu=2, memoryMB=1024*2 },
+    "k8s-worker1" = { os_code_name = "focal", network = "nat131", prefixIP = "192.168.131", octetIP = "10", vcpu=2, memoryMB=1024*2 }
+    "k8s-worker2" = { os_code_name = "focal", network = "nat131", prefixIP = "192.168.131", octetIP = "10", vcpu=2, memoryMB=1024*2 }
+
   }
     # use local instance of dnsmasq listening on local 'l0'
 }
