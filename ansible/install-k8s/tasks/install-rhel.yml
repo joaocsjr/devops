@@ -13,7 +13,7 @@
 #
 
 
-- name: instalando dependencias - CentOS
+- name: instalando dependencias - RHEL
   yum:
     name: ['yum-utils', 'device-mapper-persistent-data', 'lvm2','bash-completion']
     state: present
@@ -26,19 +26,19 @@
     mode: 0755
 
     
-- name: add repo docker - CentOS
+- name: add repo docker - RHEL
   shell:
     yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
   tags: docker
 
-- name: instalando docker - CentOS
+- name: instalando docker - RHEL
   yum:
     name: docker-ce
     state: present
     update_cache: true  
 
   
-- name: adicionando os parametros de confiugração do docker daemon - CentOS
+- name: adicionando os parametros de confiugração do docker daemon - RHEL
   blockinfile:
     dest: /etc/docker/daemon.json
     marker: ''
@@ -63,12 +63,12 @@
   ignore_errors: yes
 
 
-#- name: desabilita SELinux - CentOS
+#- name: desabilita SELinux - RHEL
 #  command: setenforce 0
-- name: desabilita SELinux on reboot - CentOS
+- name: desabilita SELinux on reboot - RHEL
   selinux:
     state: disabled
-- name: add repositorio YUM Kubernetes - CentOS
+- name: add repositorio YUM Kubernetes - RHEL
   yum_repository:
    name: Kubernetes
    description: Kubernetes YUM repository

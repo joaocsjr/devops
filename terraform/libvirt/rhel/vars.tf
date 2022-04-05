@@ -1,7 +1,7 @@
 
 variable "hostname" {
   type = list(string)
-  default = ["master","worker1","worker2","worker3"]
+  default = ["master","worker1","worker2"]
   description = "Hostname das vms"
 }
 
