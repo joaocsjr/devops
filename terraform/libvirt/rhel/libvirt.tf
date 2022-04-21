@@ -6,7 +6,7 @@ resource "libvirt_volume" "os_image" {
   pool = "default"
   #source = "https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2"
   #source = "/opt/stage/ubuntu-20.04.qcow2"
-  source = var.templates.rocky
+  source = var.templates.alma
  # source = "${var.image["rocky8.5"]}"
   format = "qcow2"
  

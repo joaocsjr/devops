@@ -1,7 +1,7 @@
 
 variable "hostname" {
   type = list(string)
-  default = ["master","worker1","worker2"]
+  default = ["master","node1","node2"]
   description = "Hostname das vms"
 }
 
@@ -22,5 +22,6 @@ variable "templates" {
     "ubunt20" = "01000000-0000-4000-8000-000030080200"
     "centos7"  = "01000000-0000-4000-8000-000050010300"
     "rocky"  = "/opt/stage/Rocky-8-GenericCloud-8.5-20211114.2.x86_64.qcow2"
+    "alma"  =  "/opt/stage/AlmaLinux-8-GenericCloud-8.5-20211119.x86_64.qcow2"
   }
 }

@@ -28,7 +28,7 @@ variable "templates" {
 
 
 variable "password" { default="linux" }
-variable "dns_domain" { default="fsociety.lab"  }
+variable "dns_domain" { default="jcastro.lab"  }
 variable "ip_type" { default = "static" }
 
 # kvm standard default network

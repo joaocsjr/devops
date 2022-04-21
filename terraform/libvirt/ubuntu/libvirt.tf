@@ -2,9 +2,9 @@
 
 locals {
   vms = {
-    "k8s-master" = { os_code_name = "focal", network = "nat130", prefixIP = "192.168.130", octetIP = "10", vcpu=2, memoryMB=1024*2 },
-    "k8s-worker1" = { os_code_name = "focal", network = "nat131", prefixIP = "192.168.131", octetIP = "10", vcpu=2, memoryMB=1024*2 }
-    "k8s-worker2" = { os_code_name = "focal", network = "nat131", prefixIP = "192.168.131", octetIP = "10", vcpu=2, memoryMB=1024*2 }
+    "master" = { os_code_name = "focal", network = "nat130", prefixIP = "192.168.130", octetIP = "10", vcpu=2, memoryMB=1024*2 },
+    "node1" = { os_code_name = "focal", network = "nat131", prefixIP = "192.168.131", octetIP = "10", vcpu=2, memoryMB=1024*2 }
+    "node2" = { os_code_name = "focal", network = "nat131", prefixIP = "192.168.131", octetIP = "10", vcpu=2, memoryMB=1024*2 }
 
   }
     # use local instance of dnsmasq listening on local 'l0'
@@ -19,10 +19,7 @@ resource "libvirt_volume" "os_image" {
   #for_each = local.vms
   name = "ubuntu.qcow2"
   pool = "default"
-  #source = "https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2"
-  #source = "/opt/stage/ubuntu-20.04.qcow2"
   source = var.templates.ubuntu
- # source = "${var.image["rocky8.5"]}"
   format = "qcow2"
   
  

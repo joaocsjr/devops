@@ -33,7 +33,7 @@
 
 - name: instalando docker - RHEL
   yum:
-    name: docker-ce
+    name: docker
     state: present
     update_cache: true  
 
