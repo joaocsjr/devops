@@ -1,8 +1,18 @@
+
+
+- hosts: all
+  become: yes 
+  user: devops
+  roles:
+  - { role: ansible-role-containerd, tags: ["Install_containerd"] }
+
+
 - hosts: all
   become: yes 
   user: devops
   roles:
   - { role: k8s-pre, tags: ["Install_k8s_role"] }
+
 
 - hosts: k8s-master
   become: yes 

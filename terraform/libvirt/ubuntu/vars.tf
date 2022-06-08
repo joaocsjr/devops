@@ -1,18 +1,18 @@
 
-variable "hostname" {
-  type = list(string)
-  default = ["node-1","node-2","node-3"]
-  description = "Hostname das vms"
-}
+#variable "hostname" {
+#  type = list(string)
+#  default = ["node-1","node-2","node-3"]
+#  description = "Hostname das vms"
+#}
+#
+#
+#variable "domain" { default = "fsociety.lab" }
+#variable "memoryMB" { default = 1024*2 }
+#variable "cpu" { default = 2 }
 
-
-variable "domain" { default = "fsociety.lab" }
-variable "memoryMB" { default = 1024*2 }
-variable "cpu" { default = 2 }
-variable "disk" { default = 100 * 1024 * 1024 * 1024 } # = 100GB
-variable "network"{ default = "vlan-100"}
-variable "subnet" { default = ["192.168.100.0/24"]}
-
+#variable "network"{ default = "vlan-100"}
+#variable "subnet" { default = ["192.168.100.0/24"]}
+#
 
 
 
@@ -32,9 +32,10 @@ variable "dns_domain" { default="jcastro.lab"  }
 variable "ip_type" { default = "static" }
 
 # kvm standard default network
-variable "prefixIP" { default = "192.168.122" }
+variable "lan" { default = "192.168.122" }
+variable "mac" { default = "52:54:00:CE:06" }
+variable "virsh_network_name" { default = "default" }
 
 # kvm disk pool name
-variable "diskPool" { default = "default" }
-
-variable "virsh_network_name" { default = "default" }
+variable "diskPool" { default = "ssd2" }
+variable "disk" { default = 100 * 1024 * 1024 * 1024 } # = 100GB

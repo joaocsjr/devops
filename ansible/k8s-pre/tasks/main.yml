@@ -1,4 +1,8 @@
 ---
 # tasks file for k8s-pre
 
-- include: pre-req.yml
+- include: pre-req-rhel.yml
+  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Rocky'
+
+- include: pre-req-debian.yml
+  when: ansible_os_family == 'Debian'

@@ -2,45 +2,41 @@
 
 locals {
   vms = {
-    "master" = { os_code_name = "focal", network = "nat130", prefixIP = "192.168.130", octetIP = "10", vcpu=2, memoryMB=1024*2 },
-    "node1" = { os_code_name = "focal", network = "nat131", prefixIP = "192.168.131", octetIP = "10", vcpu=2, memoryMB=1024*2 }
-    "node2" = { os_code_name = "focal", network = "nat131", prefixIP = "192.168.131", octetIP = "10", vcpu=2, memoryMB=1024*2 }
-
+   # "kmaster10" = { os_code_name = "focal", ip = "10", vcpu=2, memoryMB=1024*4 }
+    #"kworker11" = { os_code_name = "focal", ip = "11", vcpu=2, memoryMB=1024*2 }
+    #"kworker12" = { os_code_name = "focal", ip = "12", vcpu=2, memoryMB=1024*2 }
+    #"haproxy13" = { os_code_name = "focal", ip = "13", vcpu=2, memoryMB=1024*2 }
+   #"k3s" = { os_code_name = "focal", ip = "30", vcpu=2, memoryMB=1024*2 }  
+    
   }
     # use local instance of dnsmasq listening on local 'l0'
 }
 
 
-
-
-
 # Defining VM Volume
 resource "libvirt_volume" "os_image" {
   #for_each = local.vms
-  name = "ubuntu.qcow2"
-  pool = "default"
+  name = "base.qcow2"
+  pool = var.diskPool
   source = var.templates.ubuntu
   format = "qcow2"
-  
- 
 }
 
 
 resource "libvirt_volume" "volume" {
- # name           = "volume-${count.index}"
   for_each = local.vms
   name = "${each.key}.qcow2"
   base_volume_id = libvirt_volume.os_image.id
-
+  pool = var.diskPool
   size = var.disk
-
 }
+
 
 # get user data info
 data "template_file" "user_data" {
     for_each = local.vms
 
-  template = "${file("${path.module}/cloud_init.cfg")}"
+   template = "${file("${path.module}/cloud_init.cfg")}"
    vars = {
     hostname = "${each.key}"
     fqdn = "${each.key}.${var.dns_domain}"
@@ -85,11 +81,6 @@ resource "libvirt_domain" "domain" {
   vcpu = each.value.vcpu
   
 
-  #name   = "var.vhsotnam-${count.index}"
-  #memory = "2048"
-  #vcpu   = 2
-  #count = "${}" 
-  
   
   
   network_interface {
@@ -98,7 +89,8 @@ resource "libvirt_domain" "domain" {
     network_name = "default"
     wait_for_lease = true
     hostname = "${each.key}.${var.dns_domain}"
-   # count = 4
+    addresses  = ["${var.lan}.${each.value.ip}"]
+    mac  =  "${var.mac}:${each.value.ip}"
   
   }
 
