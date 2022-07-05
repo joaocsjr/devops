@@ -40,12 +40,33 @@
            net.ipv4.ip_forward = 1
            net.bridge.bridge-nf-call-ip6tables = 1
 
+
+
+- name: set configuration for containerd repo
+  file:
+    path: "/etc/yum.repos.d/docker-ce.repo"
+    state: "touch"           
+
+- name: Add containerd repo
+  blockinfile:
+    path: "/etc/yum.repos.d/docker-ce.repo"
+    block: |
+            [docker-ce-stable]
+            name=Docker CE Stable - $basearch
+            baseurl=https://download.docker.com/linux/centos/7/$basearch/stable
+            enabled=1
+            gpgcheck=1
+            gpgkey=https://download.docker.com/linux/centos/gpg
+
+
+
+
 - name: Apply new settings
   command: sudo sysctl --system
 
-
-
-
+- name: tweek for containerd error
+  shell: sudo rm /etc/containerd/config.toml && sudo systemctl restart containerd
+  ignore_errors: yes
 
 
 - name: set configuration for kubernetes repo
@@ -67,8 +88,14 @@
              
 
 - name: Install kubelet kubeadm kubectl 
-  command: sudo dnf install -y kubelet kubeadm kubectl 
+  command: sudo dnf install -y containerd.io kubelet kubeadm kubectl 
 
+- name: start containerd
+  systemd:
+   name: containerd
+   enabled: yes
+   state: started
+    
 
 - name: start kubelet
   systemd:
