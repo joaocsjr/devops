@@ -20,6 +20,6 @@ variable "mac" { default = "52:54:00:CE:06" }
 variable "virsh_network_name" { default = "default" }
 
 # kvm disk pool name
-variable "diskPool" { default = "ssd2" }
+variable "diskPool" { default = "default" }
 variable "disk" { default = 100 * 1024 * 1024 * 1024 } # = 100GB
 

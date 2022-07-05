@@ -7,7 +7,7 @@
 
 
 - name: initialize the cluster
-  shell: kubeadm init --pod-network-cidr=10.244.0.0/16
+  shell: kubeadm init #--pod-network-cidr=10.244.0.0/16
   args:
     chdir: $HOME
     creates: cluster_initialized.txt
@@ -31,8 +31,8 @@
   become: yes
   become_user: devops
   #shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
-  #shell: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')
-  shell: kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml 
+  shell: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')
+  #shell: kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml 
 
   args:
     chdir: $HOME
