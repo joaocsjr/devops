@@ -1,0 +1,80 @@
+- name: Installing packages
+  become: true
+  dnf:
+    name: '{{ item }}'
+   # install_recommends: yes
+    state: present
+  loop:
+      - vim
+      - chrony
+      - curl
+      - wget
+      - yum-utils
+
+
+- name: Load RKE kernel modules
+  become: true
+  modprobe:
+    name: '{{ item }}'
+    state: present
+  loop:
+      - br_netfilter
+      - ip6_udp_tunnel
+      - ip_set
+      - ip_set_hash_ip
+      - ip_set_hash_net
+      - iptable_filter
+      - iptable_nat
+      - iptable_mangle
+      - iptable_raw
+      - nf_conntrack_netlink
+      - nf_conntrack
+   #   - nf_conntrack_ipv4
+      - nf_defrag_ipv4
+      - nf_nat
+     # - nf_nat_ipv4
+     # - nf_nat_masquerade_ipv4
+      - nfnetlink
+      - udp_tunnel
+      - veth
+      - vxlan
+      - x_tables
+      - xt_addrtype
+      - xt_conntrack
+      - xt_comment
+      - xt_mark
+      - xt_multiport
+      - xt_nat
+      - xt_recent
+      - xt_set
+      - xt_statistic
+      - xt_tcpudp
+
+
+
+- name: disable swap
+  shell: |
+          sudo swapoff -a
+          sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab   
+
+
+- name: configure selinux
+  shell: |
+          sudo setenforce 0
+          sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+
+
+
+- name: install rancher docker
+  shell: curl https://releases.rancher.com/install-docker/20.10.sh | sudo bash -
+  become: true
+
+- name: run docker
+  shell: systemctl enable --now docker
+  become: true
+
+- name: configure docker permissions
+  shell: usermod -aG docker devops
+  become: true
+
+

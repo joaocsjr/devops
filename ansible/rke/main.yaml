@@ -1,0 +1,6 @@
+
+- hosts: all
+  become: yes 
+  user: devops
+  roles:
+  - { role: rke, tags: ["Install_rke_role"] }

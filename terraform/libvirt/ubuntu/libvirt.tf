@@ -2,12 +2,16 @@
 
 locals {
   vms = {
-     "master" = { os_code_name = "focal", ip = "20", vcpu=2, memoryMB=1024*4 }
-    "worker1" = { os_code_name = "focal", ip = "21", vcpu=2, memoryMB=1024*2 }
-    "worker2" = { os_code_name = "focal", ip = "22", vcpu=2, memoryMB=1024*2 }
+     "rancher" = { os_code_name = "focal", ip = "50", vcpu=2, memoryMB=1024*4 }
+    #"worker1" = { os_code_name = "focal", ip = "21", vcpu=2, memoryMB=1024*2 }
+    #"worker2" = { os_code_name = "focal", ip = "22", vcpu=2, memoryMB=1024*2 }
     #"haproxy13" = { os_code_name = "focal", ip = "13", vcpu=2, memoryMB=1024*2 }
    #"k3s" = { os_code_name = "focal", ip = "30", vcpu=2, memoryMB=1024*2 }  
-    
+   "rke1" = { os_code_name = "focal", ip = "11", vcpu=2, memoryMB=1024*4 }
+  #"nginx" = { os_code_name = "focal", ip = "15", vcpu=2, memoryMB=1024*2 }
+   "rke2" = { os_code_name = "focal", ip = "12", vcpu=2, memoryMB=1024*4 }
+   "rke3" = { os_code_name = "focal", ip = "13", vcpu=2, memoryMB=1024*4 }
+   
   }
     # use local instance of dnsmasq listening on local 'l0'
 }
@@ -18,7 +22,7 @@ resource "libvirt_volume" "os_image" {
   #for_each = local.vms
   name = "base.qcow2"
   pool = var.diskPool
-  source = var.templates.ubuntu22
+  source = var.templates.ubuntu
   format = "qcow2"
 }
 

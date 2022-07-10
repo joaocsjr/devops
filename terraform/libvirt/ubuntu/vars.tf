@@ -19,7 +19,7 @@
 variable "templates" {
   type = map
   default = {
-    "ubuntu" = "/opt/stage/focal-server-cloudimg-amd64-disk-kvm.img"
+    "ubuntu" = "/opt/stage/focal-server-cloudimg-amd64.img"
     "centos7"  = "01000000-0000-4000-8000-000050010300"
     "rocky"  = "/opt/stage/Rocky-8-GenericCloud-8.5-20211114.2.x86_64.qcow2"
     "debian" = "/opt/stage/debian-10-openstack-amd64.qcow2"
@@ -34,7 +34,7 @@ variable "dns_domain" { default="jcastro.lab"  }
 variable "ip_type" { default = "static" }
 
 # kvm standard default network
-variable "lan" { default = "192.168.100" }
+variable "lan" { default = "192.168.122" }
 variable "mac" { default = "52:54:00:CE:06" }
 variable "virsh_network_name" { default = "default" }
 

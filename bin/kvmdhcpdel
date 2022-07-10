@@ -4,7 +4,7 @@ msg=" Eh preciso informar 2 paremetros: <macaddress> <hostname> "
 network="default"
 nmac="52:54:00:CE:06:"
 range="192.168.122."
-[[ $# -ne 2 ]] && echo $msg && exit 1
+[[ $# -ne 1 ]] && echo $msg && exit 1
 sudo virsh net-update default delete  ip-dhcp-host '<host mac="'$nmac$1'" ip="'$range$1'"/>' --live --config --parent-index 0
 sudo rm -rf  /var/lib/libvirt/dnsmasq/virbr0.*
 
