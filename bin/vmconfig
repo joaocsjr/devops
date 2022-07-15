@@ -1,0 +1,100 @@
+#!/bin/bash
+
+##
+# BASH menu script that checks:
+# Configure virtual machine on libvirt 
+
+
+
+
+function list_vms() {
+	echo ""
+	echo "vms actives:"
+	echo "$(virsh list ) "
+}
+
+ function dhcp_clean() {
+	echo ""
+	echo "dhcp cache removed"
+	sudo rm -rf /var/lib/libvirt/dnsmasq/virbr0.*
+
+ } 
+
+
+function dhcp_list(){
+	echo ""
+	#source ~/devops/bin
+	/bin/bash ~/devops/bin/kvmdhcplist
+
+
+}
+
+function vms_down(){
+	echo ""
+	#source ~/devops/bin
+	/bin/bash ~/devops/bin/kvm-down
+
+
+}
+
+function vms_dns() {
+	echo ""
+	sudo resolvectl dns virbr0 192.168.122.1
+	sudo resolvectl domain virbr0 jcastro.lab
+	
+
+}
+
+
+
+
+function all_checks() {
+	memory_check
+	cpu_check
+	tcp_check
+	kernel_check
+}
+
+##
+# Color  Variables
+##
+green='\e[32m'
+blue='\e[34m'
+clear='\e[0m'
+
+##
+# Color Functions
+##
+
+ColorGreen(){
+	echo -ne $green$1$clear
+}
+ColorBlue(){
+	echo -ne $blue$1$clear
+}
+
+menu(){
+echo -ne "
+Libvirt VMs Configuration:
+
+$(ColorGreen '1)') List active vms
+$(ColorGreen '2)') DHCP clean
+$(ColorGreen '3)') DHCP list
+$(ColorGreen '4)') Shutdown all vms
+$(ColorGreen '5)') Force vms dns resolution
+$(ColorGreen '0)') Exit
+$(ColorBlue 'Choose an option:') "
+        read a
+        case $a in
+	        1) list_vms ; menu ;;
+	        2) dhcp_clean ; menu ;;
+	        3) dhcp_list ; menu ;;
+	        4) vms_down ; menu ;;
+	        5) vms_dns ; menu ;;
+		0) exit 0 ;;
+		*) echo -e $red"Wrong option."$clear; WrongCommand;;
+        esac
+}
+
+# Call the menu function
+menu

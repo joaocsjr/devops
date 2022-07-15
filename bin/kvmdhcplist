@@ -7,5 +7,5 @@ echo "--------------------------------------------DHCP libvirt------------------
 sudo virsh net-dhcp-leases --network $network
 echo "-------------Arquivo de conf DHCP-------------------"
 sudo virsh net-dumpxml  $network                          #| grep host\ mac 
-alias conn="echo ' Total de entradas no arquivo de conf DHCP libvirt:'; sudo virsh net-dumpxml  $network | grep 'host mac'  | wc -l"
-conn
+echo "Total de entradas no arquivo de conf DHCP libvirt:"; sudo virsh net-dumpxml  $network | grep 'host mac'  | wc -l
+
