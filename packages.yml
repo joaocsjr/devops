@@ -4,7 +4,7 @@
   tasks:
     - name: Installing Linux Apps
       become: true
-      dnf:
+      apt:
         name: '{{ item }}'
        # install_recommends: yes
         state: present
@@ -56,17 +56,17 @@
           - dnf-plugins-core
 
 
-    - name: enable rpm fusion free
-      shell: sudo dnf install -y  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+#    - name: enable rpm fusion free
+#      shell: sudo dnf install -y  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 
-    - name: enable rpm fusion non-free
-      shell: sudo dnf install -y  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+#    - name: enable rpm fusion non-free
+ #     shell: sudo dnf install -y  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-    - name: multimedir plugins
-      shell: sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+  #  - name: multimedir plugins
+   #   shell: sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
     
-    - name: install terraform 
-      shell: sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+#    - name: install terraform 
+ #     shell: sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
 
     - name: user in groups
       become: yes
