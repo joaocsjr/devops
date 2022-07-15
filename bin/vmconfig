@@ -32,8 +32,7 @@ function dhcp_list(){
 function vms_down(){
 	echo ""
 	#source ~/devops/bin
-	/bin/bash ~/devops/bin/kvm-down
-
+	for vm in $(virsh list --name); do virsh shutdown $vm; done
 
 }
 
@@ -41,7 +40,7 @@ function vms_dns() {
 	echo ""
 	sudo resolvectl dns virbr0 192.168.122.1
 	sudo resolvectl domain virbr0 jcastro.lab
-	
+
 
 }
 

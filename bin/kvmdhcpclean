@@ -1,6 +1,0 @@
-#!/bin/bash
-
-msg="remove dhcp cache "
-
-
-sudo rm -rf  /var/lib/libvirt/dnsmasq/virbr0.*

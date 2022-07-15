@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ansible-playbook /home/jcastro/devops/kvm-provision/main.yaml -i /home/jcastro/devops/kvm-provision/inventory $1 $2 
