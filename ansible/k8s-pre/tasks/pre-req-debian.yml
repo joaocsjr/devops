@@ -6,6 +6,7 @@
     
 - name: disable ufw
   shell: systemctl stop --now ufw
+  ignore_errors: yes
 
 
 

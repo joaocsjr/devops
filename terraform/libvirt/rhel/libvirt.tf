@@ -3,12 +3,12 @@
 ###declarao das info
 locals {
   vms = {
-    "master20" = { os_code_name = "focal", ip = "20", vcpu=2, memoryMB=1024*4 }
-   # "worker21" = { os_code_name = "focal", ip = "21", vcpu=2, memoryMB=1024*2 }
-    "worker22" = { os_code_name = "focal", ip = "22", vcpu=2, memoryMB=1024*2 }
-    "worker23" = { os_code_name = "focal", ip = "23", vcpu=2, memoryMB=1024*2 }
-    "haproxy" = { os_code_name = "focal", ip = "14", vcpu=2, memoryMB=1024*2 }
-   # "server1" = { os_code_name = "focal", ip = "11", vcpu=2, memoryMB=1024*2 }
+   # "rke1" = { os_code_name = "focal", ip = "11", vcpu=2, memoryMB=1024*4 }
+   ##"nginx" = { os_code_name = "focal", ip = "15", vcpu=2, memoryMB=1024*2 }
+   # "rke2" = { os_code_name = "focal", ip = "12", vcpu=2, memoryMB=1024*4 }
+   # "rke3" = { os_code_name = "focal", ip = "13", vcpu=2, memoryMB=1024*4 }
+   #"haproxy" = { os_code_name = "focal", ip = "14", vcpu=2, memoryMB=1024*2 }
+   #"rancher" = { os_code_name = "focal", ip = "19", vcpu=2, memoryMB=1024*2 }
  #   "server2" = { os_code_name = "focal", ip = "12", vcpu=2, memoryMB=1024*2 }
    
     

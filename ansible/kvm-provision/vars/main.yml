@@ -16,7 +16,7 @@ vm_location: /var/lib/libvirt/images/
 #############################################
 
 #determina a imagem que sera usada [centos, ubuntu, fedora *beta]
-template_so: "centos"
+template_so: "ubuntu"
 dhcp_reservation: "yes"
 utils: "no"
 #gera arquivo de de inventario para o kvm-up

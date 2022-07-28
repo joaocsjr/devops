@@ -1,0 +1,93 @@
+- name: Preparing Workstation
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Installing Linux Apps
+      become: true
+      apt:
+        name: '{{ item }}'
+       # install_recommends: yes
+        state: present
+      loop:
+          - vim
+          - htop
+          - curl
+          - wget
+          - ncdu
+          - tree
+          - ca-certificates
+          - gnupg
+          - python3-pip
+          - make
+          - git
+          - bash-completion
+          - gnupg-agent
+          - zsh
+          - flameshot
+          - fonts-hack
+          - tilix
+          - mlocate
+          - qemu-kvm
+          - libvirt
+          - libvirt-daemon
+          - virt-install
+          - bridge-utils
+          - libosinfo-bin 
+          - jq
+          - libguestfs-tools 
+          - virt-top
+          - virt-manager
+          - conky
+          - piper
+          - gnome-tweaks
+          - gnome-extensions-app
+          - fontconfig-font-replacements
+          - fontconfig-enhanced-defaults
+          - chrome-gnome-shell
+          - snapd
+          - gnome-shell-extension-pop-shell.noarch
+          - gnome-shell-extension-pop-shell-shortcut-overrides.noarch
+          - gnome-shell-extension-native-window-placement.noarch
+          - gnome-shell-extension-appindicator.noarch
+          - elementary-icon-theme-inkscape-palette.noarch
+          - gnome-shell-theme-flat-remix.noarch 
+          - papirus-icon-theme
+          - ubuntu-fonts-0.83-2.fc35
+          - dnf-plugins-core
+
+
+#    - name: enable rpm fusion free
+#      shell: sudo dnf install -y  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+
+#    - name: enable rpm fusion non-free
+ #     shell: sudo dnf install -y  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+  #  - name: multimedir plugins
+   #   shell: sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+    
+#    - name: install terraform 
+ #     shell: sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+
+    - name: user in groups
+      become: yes
+      user:
+        name: jcastro
+        groups: "libvirt, libvirt-qemu, libvirt-dnsmasq"
+        state: present
+    
+    - name: copy conky config
+      copy:
+        src: ./lean-conky-config
+        dest: ~/.config/conky/
+        mode: 0774
+    - name: running conky command
+      command: ~/.config/conky/lean-conky-config/start.sh
+    - name: copy bashrc file
+      copy:
+        src: ./.bashrc
+        dest: ~/
+    - name: copy zshrc
+      copy:
+        src: ./.zshrc
+        dest: ~/
+

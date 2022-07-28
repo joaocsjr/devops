@@ -59,8 +59,6 @@
             gpgkey=https://download.docker.com/linux/centos/gpg
 
 
-
-
 - name: Apply new settings
   command: sudo sysctl --system
 
@@ -88,7 +86,7 @@
              
 
 - name: Install kubelet kubeadm kubectl 
-  command: sudo dnf install -y containerd.io kubelet kubeadm kubectl 
+  command: sudo dnf install -y containerd.io kubelet kubeadm kubectl bash-completion
 
 - name: start containerd
   systemd:

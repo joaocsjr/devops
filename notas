@@ -1,0 +1,2 @@
+❯ resolvectl dns virbr0 192.168.122.1
+❯ resolvectl domain virbr0 jcastro.lab
