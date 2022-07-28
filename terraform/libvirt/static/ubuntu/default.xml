@@ -1,0 +1,24 @@
+<network>
+  <name>default</name>
+  <uuid>05ea90d3-7dde-4b3f-822c-0f3a82287408</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr0' stp='on' delay='0'/>
+  <mac address='52:54:00:db:ec:60'/>
+  <domain name='jcastro.lab' localOnly='yes'/>
+  <ip address='192.168.122.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.122.2' end='192.168.122.99'/>
+    
+    </dhcp>
+  </ip>
+  <dns>
+    <host ip="192.168.123.100"><hostname>apps.jcastro.lab</hostname></host>
+  </dns>
+
+  
+</network>
+
