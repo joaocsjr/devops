@@ -1,0 +1,32 @@
+<network xmlns:dnsmasq='http://libvirt.org/schemas/network/dnsmasq/1.0' connections='1'>
+  <name>ocp-dev</name>
+  <uuid>2c98db04-7018-4cf5-9e07-65c4b3223143</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr1' stp='on' delay='0'/>
+  <mac address='52:54:00:b7:35:c5'/>
+  <dns>
+    <host ip='10.10.2.5'>
+      <hostname>api.ocp4-libvirt.jcastro.lab</hostname>
+    </host>
+    <host ip='10.10.2.4'>
+      <hostname>vcsa.jcastro.lab</hostname>
+    </host>
+  </dns>
+  <ip address='10.10.2.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='10.10.2.2' end='10.10.2.254'/>
+      <host mac='02:01:00:00:00:66' name='node.ocp4-libvirt.jcastro.lab' ip='10.10.2.5'/>
+    </dhcp>
+  </ip>
+  <dnsmasq:options>
+    <dnsmasq:option value='auth-server=ocp4-libvirt.jcastro.lab,'/>
+    <dnsmasq:option value='auth-zone=ocp4-libvirt.jcastro.lab'/>
+    <dnsmasq:option value='host-record=lb.ocp4-libvirt.jcastro.lab,10.10.2.5'/>
+    <dnsmasq:option value='cname=*.apps.ocp4-libvirt.jcastro.lab,lb.ocp4-libvirt.jcastro.lab'/>
+  </dnsmasq:options>
+</network>
+

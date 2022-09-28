@@ -7,7 +7,8 @@
 
 
 - name: initialize the cluster
-  shell: kubeadm init --pod-network-cidr=10.244.0.0/16
+  #shell: kubeadm init --pod-network-cidr=10.244.0.0/16  >> /root/kubeinit.log 2>/dev/null
+  shell: kubeadm init --pod-network-cidr=10.244.0.0/16 
   args:
     chdir: $HOME
     creates: cluster_initialized.txt

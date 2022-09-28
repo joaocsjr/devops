@@ -4,15 +4,15 @@ locals {
   vms = {
     # "rancher" = { os_code_name = "focal", ip = "50", vcpu=2, memoryMB=1024*4 }
     #
-    "lb1" = { os_code_name = "focal", ip = "21", vcpu=2, memoryMB=512 }
-    "lb2" = { os_code_name = "focal", ip = "22", vcpu=2, memoryMB=512 }
-    "master1" = { os_code_name = "focal", ip = "61", vcpu=2, memoryMB=1024*2 }
-    "master2" = { os_code_name = "focal", ip = "62", vcpu=2, memoryMB=1024*2 }
-    "master3" = { os_code_name = "focal", ip = "63", vcpu=2, memoryMB=1024*2 }
+   # "lb1" = { os_code_name = "focal", ip = "21", vcpu=2, memoryMB=512 }
+   # "lb2" = { os_code_name = "focal", ip = "22", vcpu=2, memoryMB=512 }
+    "master" = { os_code_name = "focal", ip = "61", vcpu=2, memoryMB=1024*2 }
+   # "master2" = { os_code_name = "focal", ip = "62", vcpu=2, memoryMB=1024*2 }
+   # "master3" = { os_code_name = "focal", ip = "63", vcpu=2, memoryMB=1024*2 }
     "worker1" = { os_code_name = "focal", ip = "71", vcpu=2, memoryMB=1024*2 }
     "worker2" = { os_code_name = "focal", ip = "72", vcpu=2, memoryMB=1024*2 }
-   "rancher" = { os_code_name = "focal", ip = "30", vcpu=2, memoryMB=1024*2 }  
-      "rancher1" = { os_code_name = "focal", ip = "31", vcpu=2, memoryMB=1024*2 }  
+   #"rancher" = { os_code_name = "focal", ip = "30", vcpu=2, memoryMB=1024*2 }  
+   #   "rancher1" = { os_code_name = "focal", ip = "31", vcpu=2, memoryMB=1024*2 }  
   # "rke1" = { os_code_name = "focal", ip = "11", vcpu=2, memoryMB=1024*4 }
   #"nginx" = { os_code_name = "focal", ip = "15", vcpu=2, memoryMB=1024*2 }
   # "rke2" = { os_code_name = "focal", ip = "12", vcpu=2, memoryMB=1024*4 }

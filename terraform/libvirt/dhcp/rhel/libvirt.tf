@@ -9,8 +9,7 @@ locals {
    # "rke3" = { os_code_name = "focal", ip = "13", vcpu=2, memoryMB=1024*4 }
    #"haproxy" = { os_code_name = "focal", ip = "14", vcpu=2, memoryMB=1024*2 }
    #"rancher" = { os_code_name = "focal", ip = "19", vcpu=2, memoryMB=1024*2 }
- #   "server2" = { os_code_name = "focal", ip = "12", vcpu=2, memoryMB=1024*2 }
-   
+  
     
     
   }
