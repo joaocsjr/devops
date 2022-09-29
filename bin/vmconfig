@@ -10,7 +10,7 @@
 function list_vms() {
 	echo ""
 	echo "vms actives:"
-	echo "$(virsh list ) "
+	echo "$(sudo virsh list ) "
 }
 
  function dhcp_clean() {
@@ -32,7 +32,7 @@ function dhcp_list(){
 function vms_down(){
 	echo ""
 	#source ~/devops/bin
-	for vm in $(virsh list --name); do virsh shutdown $vm; done
+	for vm in $(sudo virsh list --name); do sudo virsh shutdown $vm; done
 
 }
 

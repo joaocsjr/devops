@@ -1,32 +1,35 @@
-<network xmlns:dnsmasq='http://libvirt.org/schemas/network/dnsmasq/1.0' connections='1'>
-  <name>ocp-dev</name>
-  <uuid>2c98db04-7018-4cf5-9e07-65c4b3223143</uuid>
+<network xmlns:dnsmasq='http://libvirt.org/schemas/network/dnsmasq/1.0'>
+  <name>default</name>
+  <uuid>86a9194e-e05d-4ad2-9ad8-dea926f7e2e1</uuid>
   <forward mode='nat'>
     <nat>
       <port start='1024' end='65535'/>
     </nat>
   </forward>
-  <bridge name='virbr1' stp='on' delay='0'/>
-  <mac address='52:54:00:b7:35:c5'/>
+  <bridge name='virbr0' stp='on' delay='0'/>
+  <mac address='52:54:00:64:be:0d'/>
+  <domain name='jcastro.lab' localOnly='yes'/>
   <dns>
-    <host ip='10.10.2.5'>
-      <hostname>api.ocp4-libvirt.jcastro.lab</hostname>
+    <host ip='192.168.122.5'>
+      <hostname>api.ocp.jcastro.lab</hostname>
     </host>
-    <host ip='10.10.2.4'>
+    <host ip='192.168.122.4'>
       <hostname>vcsa.jcastro.lab</hostname>
     </host>
   </dns>
-  <ip address='10.10.2.1' netmask='255.255.255.0'>
+  <ip address='192.168.122.1' netmask='255.255.255.0'>
     <dhcp>
-      <range start='10.10.2.2' end='10.10.2.254'/>
-      <host mac='02:01:00:00:00:66' name='node.ocp4-libvirt.jcastro.lab' ip='10.10.2.5'/>
+      <range start='192.168.122.2' end='192.168.122.254'/>
+      <host mac='52:54:00:CE:06:10' name='vmaster.jcastro.lab' ip='192.168.122.10'/>
+      <host mac='52:54:00:CE:06:11' name='vworker1.jcastro.lab' ip='192.168.122.11'/>
+      <host mac='52:54:00:CE:06:12' name='vworker2.jcastro.lab' ip='192.168.122.12'/>
     </dhcp>
   </ip>
   <dnsmasq:options>
-    <dnsmasq:option value='auth-server=ocp4-libvirt.jcastro.lab,'/>
-    <dnsmasq:option value='auth-zone=ocp4-libvirt.jcastro.lab'/>
-    <dnsmasq:option value='host-record=lb.ocp4-libvirt.jcastro.lab,10.10.2.5'/>
-    <dnsmasq:option value='cname=*.apps.ocp4-libvirt.jcastro.lab,lb.ocp4-libvirt.jcastro.lab'/>
+    <dnsmasq:option value='auth-server=ocp.jcastro.lab,'/>
+    <dnsmasq:option value='auth-zone=ocp.jcastro.lab'/>
+    <dnsmasq:option value='host-record=apps.ocp.jcastro.lab,192.168.122.5'/>
+    <dnsmasq:option value='cname=*.apps.ocp.jcastro.lab,api.ocp.jcastro.lab'/>
   </dnsmasq:options>
 </network>
 
